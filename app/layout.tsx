@@ -1,17 +1,20 @@
+
 import type { Metadata } from "next";
 import { Press_Start_2P } from "next/font/google";
+import { LanguageProvider } from "@/i18n/LanguageContext";
 import "./globals.css";
 
-const pressStart = Press_Start_2P({
+const pixelFont = Press_Start_2P({
   weight: "400",
   subsets: ["latin"],
-  variable: "--font-press-start",
+  variable: "--font-pixel",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
   title: "Pedro Faber | Interactive Portfolio",
   description:
-    "Interactive portfolio of Pedro Faber — Software Developer, IT and Automation.",
+    "Interactive portfolio of Pedro Henrique Faber",
 };
 
 export default function RootLayout({
@@ -21,8 +24,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR">
-      <body className={`${pressStart.variable} antialiased`}>
-        {children}
+      <body className={pixelFont.className}>
+        <LanguageProvider>
+          {children}
+        </LanguageProvider>
       </body>
     </html>
   );

@@ -17,6 +17,14 @@ type PortfolioSection =
   | "skills"
   | "education";
 
+const validSections: PortfolioSection[] = [
+  "projects",
+  "about",
+  "experience",
+  "skills",
+  "education",
+];
+
 export function GameCanvas() {
   const gameRef = useRef<HTMLDivElement>(null);
 
@@ -27,14 +35,12 @@ export function GameCanvas() {
     useState(false);
 
   useEffect(() => {
-    if (!gameRef.current) return;
+    const container = gameRef.current;
+
+    if (!container) return;
 
     let game: import("phaser").Game | undefined;
     let cancelled = false;
-
-    // =====================================================
-    // PHASER
-    // =====================================================
 
     async function startGame() {
       const Phaser = await import("phaser");
@@ -43,16 +49,9 @@ export function GameCanvas() {
         "@/game/scenes/RoomScene"
       );
 
-      if (
-        cancelled ||
-        !gameRef.current
-      ) {
-        return;
-      }
+      if (cancelled) return;
 
-      // Evita canvas duplicado durante
-      // Fast Refresh do Next.js.
-      gameRef.current.innerHTML = "";
+      container!.innerHTML = "";
 
       game = new Phaser.Game({
         type: Phaser.AUTO,
@@ -60,7 +59,7 @@ export function GameCanvas() {
         width: 960,
         height: 540,
 
-        parent: gameRef.current,
+        parent: container!,
 
         backgroundColor: "#08111f",
 
@@ -86,21 +85,7 @@ export function GameCanvas() {
       });
     }
 
-    // =====================================================
-    // INTERAÇÕES DO QUARTO
-    // =====================================================
-
-    const handleInteraction = (
-      action: string
-    ) => {
-      const validSections: PortfolioSection[] = [
-        "projects",
-        "about",
-        "experience",
-        "skills",
-        "education",
-      ];
-
+    const handleInteraction = (action: string) => {
       if (
         validSections.includes(
           action as PortfolioSection
@@ -110,78 +95,38 @@ export function GameCanvas() {
           action as PortfolioSection
         );
 
-        EventBus.emit(
-          "portfolio-open"
-        );
+        EventBus.emit("portfolio-open");
       }
     };
 
-    // =====================================================
-    // INÍCIO DOS CRÉDITOS
-    // =====================================================
-
     const handleEndingStart = () => {
-      // Garante que nenhum menu fique aberto.
       setActiveSection(null);
-
-      // Mostra a tela de créditos.
       setShowCredits(true);
     };
 
-    // =====================================================
-    // EVENT BUS
-    // =====================================================
+    EventBus.on("interaction", handleInteraction);
+    EventBus.on("ending-start", handleEndingStart);
 
-    EventBus.on(
-      "interaction",
-      handleInteraction
-    );
-
-    EventBus.on(
-      "ending-start",
-      handleEndingStart
-    );
-
-    // =====================================================
-    // INICIA O JOGO
-    // =====================================================
-
-    startGame();
-
-    // =====================================================
-    // CLEANUP
-    // =====================================================
+    void startGame();
 
     return () => {
       cancelled = true;
 
-      EventBus.off(
-        "interaction",
-        handleInteraction
-      );
-
-      EventBus.off(
-        "ending-start",
-        handleEndingStart
-      );
+      EventBus.off("interaction", handleInteraction);
+      EventBus.off("ending-start", handleEndingStart);
 
       if (game) {
         game.destroy(true);
         game = undefined;
       }
 
-      if (gameRef.current) {
-        gameRef.current.innerHTML = "";
-      }
+      container.innerHTML = "";
     };
   }, []);
 
-  // =======================================================
-  // RENDER
-  // =======================================================
-
   return (
     <div className="relative h-full w-full overflow-hidden bg-black">
+
       {/* PHASER */}
       <div
         ref={gameRef}
@@ -194,10 +139,7 @@ export function GameCanvas() {
           section={activeSection}
           onClose={() => {
             setActiveSection(null);
-
-            EventBus.emit(
-              "portfolio-close"
-            );
+            EventBus.emit("portfolio-close");
           }}
         />
       )}
@@ -207,9 +149,12 @@ export function GameCanvas() {
         <CreditsScreen
           onFinish={() => {
             setShowCredits(false);
+            setActiveSection(null);
+            EventBus.emit("ending-finish");
           }}
         />
       )}
+
     </div>
   );
 }

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useLanguage } from "@/i18n/LanguageContext";
 
 type AboutMenuProps = {
   onClose: () => void;
@@ -13,38 +14,62 @@ type ProfileSection = {
   content: string;
 };
 
+
 const profileSections: ProfileSection[] = [
   {
     id: 1,
     label: "PROFILE",
     title: "PEDRO FABER",
     content:
-      "Desenvolvedor de software e profissional de TI, com foco em desenvolvimento, automação e criação de soluções tecnológicas.",
+      "Desenvolvedor de software e profissional de Tecnologia da Informação, com experiência em suporte técnico, infraestrutura, desenvolvimento web e automação de processos. Busco criar soluções práticas, eficientes e que realmente façam diferença.",
   },
   {
     id: 2,
     label: "BACKGROUND",
     title: "MY JOURNEY",
     content:
-      "Formado em Análise e Desenvolvimento de Sistemas, construindo experiência prática em desenvolvimento de software, infraestrutura de TI e automação.",
+      "meu nome é Pedro Henrique Faber, sou de Cabreúva-SP, e tenho construído minha trajetória em torno da tecnologia, da curiosidade e da vontade de aprender. Atuo na área de Tecnologia da Informação, onde desenvolvo experiência prática com suporte técnico, infraestrutura, redes, manutenção de equipamentos e resolução de problemas. Paralelamente, dedico meu tempo ao desenvolvimento de software, explorando aplicações web, projetos Full Stack e automação de processos. Gosto de entender como as coisas funcionam, encontrar maneiras de melhorá-las e transformar ideias em soluções úteis. Fora do ambiente profissional, também gosto de futebol e videogames, interesses que fazem parte da minha personalidade e que, de certa forma, inspiraram a criação deste portfólio interativo. Encaro cada novo projeto como uma oportunidade de aprender, experimentar tecnologias e evoluir tanto profissionalmente quanto pessoalmente.",
   },
   {
     id: 3,
     label: "OBJECTIVE",
     title: "NEXT LEVEL",
     content:
-      "Continuar evoluindo como profissional de tecnologia, participando de projetos que unam desenvolvimento, automação e resolução de problemas reais.",
+      "Meu objetivo é continuar evoluindo como desenvolvedor de software e profissional de tecnologia, aprofundando meus conhecimentos em desenvolvimento Full Stack, engenharia de software, arquitetura de sistemas, automação e Cybersegurança. Quero participar da construção de aplicações modernas, seguras e escaláveis, que resolvam problemas reais e proporcionem experiências de qualidade aos usuários. Também busco ampliar minha capacidade de analisar desafios, planejar soluções e integrar diferentes tecnologias de maneira eficiente. Mais do que dominar ferramentas ou linguagens, quero desenvolver uma visão cada vez mais completa sobre tecnologia, unindo criatividade, conhecimento técnico e responsabilidade. Minha meta é contribuir para projetos relevantes, aprender com profissionais experientes e, ao longo da minha trajetória, criar soluções próprias que possam gerar impacto positivo.",
+  },
+];
+
+
+const profileSectionsEn: ProfileSection[] = [
+  {
+    id: 1,
+    label: "PROFILE",
+    title: "PEDRO FABER",
+    content: "Software developer and Information Technology professional with experience in technical support, IT infrastructure, web development, and process automation. I aim to create practical, efficient solutions that make a meaningful difference.",
+  },
+  {
+    id: 2,
+    label: "BACKGROUND",
+    title: "MY JOURNEY",
+    content: "My name is Pedro Henrique Faber, and I am from Cabreúva, São Paulo, Brazil. My journey has been shaped by technology, curiosity, and a desire to keep learning. I work in Information Technology, gaining hands-on experience in technical support, infrastructure, networking, equipment maintenance, and troubleshooting. Alongside my professional work, I dedicate time to software development, exploring web applications, full-stack projects, and process automation. I enjoy understanding how things work, finding ways to improve them, and turning ideas into useful solutions. Outside work, I also enjoy soccer and video games—interests that are part of who I am and, in a way, inspired this interactive portfolio. I see every new project as an opportunity to learn, experiment with technologies, and grow both professionally and personally.",
+  },
+  {
+    id: 3,
+    label: "OBJECTIVE",
+    title: "NEXT LEVEL",
+    content: "My goal is to continue growing as a software developer and technology professional, deepening my knowledge of full-stack development, software engineering, system architecture, automation, and cybersecurity. I want to help build modern, secure, scalable applications that solve real problems and deliver high-quality user experiences. I also seek to strengthen my ability to analyze challenges, design solutions, and integrate different technologies effectively. Beyond mastering tools and programming languages, I want to develop a broader understanding of technology by combining creativity, technical expertise, and responsibility. I hope to contribute to meaningful projects, learn from experienced professionals, and eventually build solutions of my own that make a positive impact.",
   },
 ];
 
 export function AboutMenu({
   onClose,
 }: AboutMenuProps) {
+  const { language } = useLanguage();
   const [selectedIndex, setSelectedIndex] =
     useState(0);
 
   const selectedSection =
-    profileSections[selectedIndex];
+    (language === "pt" ? profileSections : profileSectionsEn)[selectedIndex];
 
   function previousSection() {
     setSelectedIndex((current) => {
@@ -119,11 +144,11 @@ export function AboutMenu({
 
           <div>
             <p className="font-arcade text-[8px] tracking-wider text-cyan-400">
-              PEDRO FABER // INTERACTIVE PORTFOLIO
+              PEDRO FABER // {language === "pt" ? "PORTFÓLIO INTERATIVO" : "INTERACTIVE PORTFOLIO"}
             </p>
 
             <h1 className="mt-2 font-arcade text-[16px]">
-              PLAYER PROFILE
+              {language === "pt" ? "PERFIL DO JOGADOR" : "PLAYER PROFILE"}
             </h1>
           </div>
 
@@ -154,7 +179,7 @@ export function AboutMenu({
               </h2>
 
               <p className="mt-3 text-sm text-slate-300">
-                Software Developer • IT • Automation
+                {language === "pt" ? "Desenvolvimento de Software • TI • Automação" : "Software Development • IT • Automation"}
               </p>
 
             </div>
@@ -163,12 +188,12 @@ export function AboutMenu({
             <div className="mt-5">
 
               <p className="font-arcade text-[8px] text-cyan-400">
-                PROFILE DATA
+                {language === "pt" ? "DADOS DO PERFIL" : "PROFILE DATA"}
               </p>
 
               <div className="mt-3 flex gap-2">
 
-                {profileSections.map(
+                {(language === "pt" ? profileSections : profileSectionsEn).map(
                   (item, index) => {
                     const isSelected =
                       selectedIndex === index;
@@ -199,30 +224,36 @@ export function AboutMenu({
 
             </div>
 
-            {/* CONTEÚDO */}
-            <div className="mt-5 border-t-2 border-slate-600 pt-5">
+            
+{/* CONTEÚDO COM ROLAGEM */}
+<div className="mt-5 flex min-h-0 flex-1 flex-col overflow-hidden border-t-2 border-slate-600 pt-5">
 
-              <p className="font-arcade text-[8px] text-cyan-400">
-                {selectedSection.label}
-              </p>
+  <p className="shrink-0 font-arcade text-[8px] text-cyan-400">
+    {selectedSection.label}
+  </p>
 
-              <h3 className="mt-4 font-arcade text-[13px]">
-                {selectedSection.title}
-              </h3>
+  <h3 className="mt-4 shrink-0 font-arcade text-[13px]">
+    {selectedSection.title}
+  </h3>
 
-              <p className="mt-4 max-w-xl text-sm leading-7 text-slate-300">
-                {selectedSection.content}
-              </p>
+  <div
+    key={selectedSection.id}
+    className="mt-4 min-h-0 flex-1 overflow-y-auto overscroll-contain pr-3"
+  >
+    <p className="max-w-xl pb-4 text-sm leading-7 text-slate-300">
+      {selectedSection.content}
+    </p>
+  </div>
 
-            </div>
+</div>
 
             {/* CONTROLES */}
             <div className="mt-auto border-t border-slate-700 pt-4">
 
               <p className="font-arcade text-[7px] text-slate-400">
-                [↑ ↓] SELECT
+                [↑ ↓] {language === "pt" ? "SELECIONAR" : "SELECT"}
                 &nbsp;&nbsp;&nbsp;
-                [ESC] BACK
+                [ESC] {language === "pt" ? "VOLTAR" : "BACK"}
               </p>
 
             </div>
@@ -281,7 +312,7 @@ export function AboutMenu({
         <footer className="flex items-center justify-between border-t-4 border-white bg-[#101e32] px-5 py-3">
 
           <p className="font-arcade text-[7px] text-slate-500">
-            PF SYSTEM // PLAYER PROFILE
+            PF SYSTEM // {language === "pt" ? "PERFIL DO JOGADOR" : "PLAYER PROFILE"}
           </p>
 
           <button
@@ -289,7 +320,7 @@ export function AboutMenu({
             onClick={onClose}
             className="border-2 border-white bg-black px-4 py-2 font-arcade text-[8px] transition hover:bg-white hover:text-black"
           >
-            ESC BACK
+            ESC {language === "pt" ? "VOLTAR" : "BACK"}
           </button>
 
         </footer>

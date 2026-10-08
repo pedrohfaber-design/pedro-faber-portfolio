@@ -7,7 +7,8 @@ import {
 } from "react";
 
 import { useRouter } from "next/navigation";
-
+import { LanguageSwitcher } from "./LanguageSwitcher";
+import { useLanguage } from "@/i18n/LanguageContext";
 import { PFCoin } from "./PFCoin";
 import { ReadyScreen } from "./ReadyScreen";
 
@@ -19,7 +20,7 @@ type IntroState =
 
 export function TitleScreen() {
   const router = useRouter();
-
+const { language } = useLanguage();
   const [introState, setIntroState] =
     useState<IntroState>("idle");
 
@@ -31,12 +32,14 @@ export function TitleScreen() {
   // =====================================================
 
   useEffect(() => {
-    return () => {
-      timersRef.current.forEach(
-        (timer) => clearTimeout(timer)
-      );
-    };
-  }, []);
+  const timers = timersRef.current;
+
+  return () => {
+    timers.forEach((timer) => {
+      clearTimeout(timer);
+    });
+  };
+}, []);
 
   // =====================================================
   // INSERT COIN
@@ -74,7 +77,7 @@ export function TitleScreen() {
 
   return (
     <main className="relative flex min-h-screen overflow-hidden bg-[#05070d] text-white">
-
+      <LanguageSwitcher />
       {/* ================================= */}
       {/* FUNDO */}
       {/* ================================= */}
@@ -106,7 +109,9 @@ export function TitleScreen() {
       <section className="relative z-10 flex min-h-screen w-full flex-col items-center justify-center px-6 text-center">
 
         <p className="mb-5 font-mono text-xs tracking-[0.4em] text-cyan-400">
-          INTERACTIVE PORTFOLIO
+          {language === "pt"
+  ? "PORTFÓLIO INTERATIVO"
+  : "INTERACTIVE PORTFOLIO"}
         </p>
 
         {/* ================================= */}
@@ -138,7 +143,9 @@ export function TitleScreen() {
         {/* ================================= */}
 
         <p className="mt-5 font-mono text-xs uppercase tracking-[0.2em] text-zinc-400 sm:text-sm">
-          Software Developer • IT • Automation
+          {language === "pt"
+  ? "Desenvolvimento de Software • TI • Automação"
+  : "Software Development • IT • Automation"}
         </p>
 
         {/* ================================= */}
