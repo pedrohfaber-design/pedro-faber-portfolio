@@ -289,7 +289,7 @@ export function AboutMenu({
     className="h-full w-full object-cover"
   >
    <source
-  src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/videos/credits-loop.mp4`}
+  src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/videos/about-loop.mp4`}
   type="video/mp4"
 />
   </video>
