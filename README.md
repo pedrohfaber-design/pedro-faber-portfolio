@@ -1,36 +1,176 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
+# 🎮 Pedro Faber | Interactive Portfolio
 
-First, run the development server:
+### Um portfólio que você não apenas visita. Você explora.
+
+Bem-vindo ao meu portfólio interativo!
+
+Este projeto foi desenvolvido para apresentar minha trajetória profissional, meus conhecimentos e meus projetos de uma maneira diferente: por meio de uma experiência inspirada em jogos retrô, com elementos de RPG e uma interface arcade.
+
+Em vez de navegar por páginas tradicionais, o visitante controla um personagem em um quarto virtual, interage com objetos e descobre diferentes partes da minha trajetória.
+
+---
+
+## 🕹️ Como funciona?
+
+A experiência começa em uma tela inspirada nos antigos fliperamas.
+
+1. **INSERT COIN:** inicia a experiência.
+2. **READY:** prepara a entrada no ambiente.
+3. **QUARTO INTERATIVO:** explore o cenário controlando o personagem.
+4. **INTERAÇÕES:** aproxime-se dos objetos e pressione `E` para descobrir informações.
+5. **FINAL CHAPTER:** atravesse a porta para acessar o encerramento e os contatos.
+6. **VOLTAR AO QUARTO:** retorne ao cenário e continue explorando.
+
+### 🎮 Controles
+
+| Tecla | Ação |
+|---|---|
+| `W A S D` | Movimentar |
+| `↑ ↓ ← →` | Movimentar |
+| `E` | Interagir com objetos |
+
+---
+
+## 💻 Tecnologias utilizadas
+
+- **Next.js** — Framework React para desenvolvimento web.
+- **React** — Construção de interfaces e componentes.
+- **TypeScript** — Tipagem estática e organização do código.
+- **Tailwind CSS** — Estilização e responsividade.
+- **Phaser 3** — Motor de jogo responsável pelo cenário interativo, movimentação, animações e colisões.
+- **Git e GitHub** — Versionamento e hospedagem do código-fonte.
+
+---
+
+## ✨ Funcionalidades
+
+- Tela inicial com identidade visual arcade.
+- Animação de inserção de moeda.
+- Transição READY para o ambiente principal.
+- Personagem com animações de movimentação.
+- Cenário interativo com colisões.
+- Interações por proximidade.
+- Menus com informações profissionais.
+- Vídeos integrados à apresentação.
+- Encerramento cinematográfico.
+- Links de contato e download de currículo.
+- Retorno ao cenário após os créditos.
+
+---
+
+## 📂 Seções do portfólio
+
+### 👨‍💻 About
+Minha apresentação, trajetória, interesses e objetivos profissionais.
+
+### 🚀 Projects
+Projetos de desenvolvimento de software, automação e tecnologia, incluindo Aesyntra, Faber Tech, Pokédex e EcoPoint.
+
+### 💼 Experience
+Experiências profissionais e responsabilidades desempenhadas na área de tecnologia e em outras atividades.
+
+### 🧠 Skills
+Conhecimentos técnicos, ferramentas e tecnologias utilizadas.
+
+### 🎓 Education
+Formação acadêmica, cursos, bootcamps e desenvolvimento profissional contínuo.
+
+---
+
+## 🚀 Executando o projeto localmente
+
+### Pré-requisitos
+
+- Node.js
+- npm
+- Git
+
+### 1. Clone o repositório
+
+```bash
+git clone https://github.com/SEU-USUARIO/SEU-REPOSITORIO.git
+```
+
+### 2. Acesse a pasta
+
+```bash
+cd SEU-REPOSITORIO
+```
+
+### 3. Instale as dependências
+
+```bash
+npm install
+```
+
+### 4. Inicie o ambiente de desenvolvimento
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abra:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+http://localhost:3000
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 5. Gere uma versão de produção
 
-## Learn More
+```bash
+npm run build
+```
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🏗️ Organização do projeto
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```text
+app/
+├── page.tsx
+├── room/
+│   └── page.tsx
+└── globals.css
 
-## Deploy on Vercel
+components/
+├── title-screen/
+├── game/
+├── portfolio/
+└── credits/
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+game/
+├── events/
+└── scenes/
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+public/
+├── room/
+├── sprites/
+└── videos/
+```
+
+O projeto combina componentes React com uma cena Phaser. A comunicação entre as interfaces e o ambiente do jogo é realizada por meio de um sistema de eventos.
+
+---
+
+## 🎯 Objetivo
+
+Este projeto nasceu da vontade de unir desenvolvimento web, criatividade e minha paixão por jogos.
+
+Além de apresentar meu perfil profissional, o portfólio demonstra a integração de diferentes tecnologias em uma aplicação interativa.
+
+A proposta é transformar uma apresentação profissional em uma experiência memorável, sem deixar de lado a organização, a usabilidade e a qualidade do desenvolvimento.
+
+---
+
+## 📬 Contato
+
+**Pedro Henrique Faber**
+
+- GitHub: https://github.com/pedrohfaber-design
+- LinkedIn: https://www.linkedin.com/in/pedrohenriquefaber
+- E-mail: pedrohfaber@gmail.com
+
+---
+
+**© 2026 Pedro Faber**
+
+*The journey continues.*
