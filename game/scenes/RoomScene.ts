@@ -52,19 +52,23 @@ export class RoomScene extends Scene {
   // PRELOAD
   // =========================================================
   preload() {
-    this.load.spritesheet(
-      "pedro",
-      "/sprites/pedro/pedro-walk.png",
-      {
-        frameWidth: 64,
-        frameHeight: 64,
-      }
-    );
-    this.load.image(
-      "room-background",
-      "/room/room-background.png"
-    );
-  }
+  const basePath =
+    process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
+  this.load.spritesheet(
+    "pedro",
+    `${basePath}/sprites/pedro/pedro-walk.png`,
+    {
+      frameWidth: 64,
+      frameHeight: 64,
+    }
+  );
+
+  this.load.image(
+    "room-background",
+    `${basePath}/room/room-background.png`
+  );
+}
   // =========================================================
   // CREATE
   // =========================================================

@@ -288,7 +288,10 @@ export function AboutMenu({
     preload="auto"
     className="h-full w-full object-cover"
   >
-    <source src="/videos/about-loop.mp4" type="video/mp4" />
+   <source
+  src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/videos/credits-loop.mp4`}
+  type="video/mp4"
+/>
   </video>
 
   <div className="pointer-events-none absolute inset-0 bg-black/5" />

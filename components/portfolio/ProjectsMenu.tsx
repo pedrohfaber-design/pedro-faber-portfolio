@@ -324,8 +324,7 @@ export function ProjectsMenu({
                 className="h-full w-full object-cover"
               >
                 <source
-                  src="/videos/projects-loop.mp4"
-                  type="video/mp4"
+                  src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/videos/projects-loop.mp4`}
                 />
               </video>
 

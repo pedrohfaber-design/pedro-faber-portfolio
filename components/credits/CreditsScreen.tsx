@@ -50,9 +50,9 @@ export function CreditsScreen({
           style={{ objectFit: "contain" }}
         >
           <source
-            src="/videos/credits-loop.mp4"
-            type="video/mp4"
-          />
+  src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/videos/credits-loop.mp4`}
+  type="video/mp4"
+/>
         </video>
       </div>
 
@@ -171,8 +171,8 @@ export function CreditsScreen({
 
             {/* CURRÍCULO */}
             <a
-              href="/Pedro Henrique Faber.pdf"
-              download
+               href={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/Pedro Henrique Faber.pdf`}
+  download
               className="flex items-center justify-between bg-cyan-400 px-4 py-4 font-bold text-black transition hover:bg-cyan-300"
               tabIndex={stage === "contact" ? 0 : -1}
             >
