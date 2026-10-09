@@ -50,11 +50,11 @@ const records: EducationRecord[] = [
     type: "EDUCATION",
     title: "MBA EM CYBERSEGURANÇA",
     institution: "USP",
-    status: "PLANNED",
+    status: "IN PROGRESS",
     description:
       "Especialização planejada na área de Cybersegurança, com o objetivo de aprofundar conhecimentos sobre proteção de sistemas, segurança da informação, gerenciamento de riscos e estratégias de defesa de ambientes tecnológicos. O interesse nessa formação está relacionado à busca por uma atuação cada vez mais completa em tecnologia, integrando desenvolvimento de software, infraestrutura e segurança. A matrícula ainda não foi confirmada; esta formação representa uma próxima etapa planejada de desenvolvimento acadêmico e profissional.",
     titleEn: "MBA IN CYBERSECURITY",
-    descriptionEn: "Planned postgraduate studies in cybersecurity, aimed at deepening my knowledge of system protection, information security, risk management, and defense strategies for technology environments. This goal reflects my interest in integrating software development, infrastructure, and security. Enrollment has not yet been confirmed; this is a planned next step in my academic and professional development.",
+    descriptionEn: "Currently pursuing an MBA in Cybersecurity at the University of São Paulo (USP), focused on expanding my expertise in system protection, information security, risk management, and cybersecurity defense strategies. This program strengthens my ability to integrate software development, IT infrastructure, and security practices to design and maintain secure, resilient technology environments.",
   },
   {
     id: 4,
