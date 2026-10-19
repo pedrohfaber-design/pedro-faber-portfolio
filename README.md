@@ -224,4 +224,4 @@ A proposta é transformar uma apresentação profissional em uma experiência me
 **Pedro Henrique Faber**
 
 - **GitHub:** https://github.com/pedrohfaber-design
-- **LinkedIn:** https://www.linkedin.com/in/pedrohenri
+- **LinkedIn:** https://www.linkedin.com/in/pedrohenriquefaber
